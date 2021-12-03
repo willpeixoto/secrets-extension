@@ -4,10 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "node-fetch": "^2.6.6",
-    "js-yaml": "^4.1.0"
+    "node-fetch": "^2.6.6"
   },
   "devDependencies": {
-    "aws-sdk": "^2.1034.0"
+    "aws-sdk": "^2.1042.0"
   }
 }
