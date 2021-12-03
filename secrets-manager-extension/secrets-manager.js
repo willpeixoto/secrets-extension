@@ -15,11 +15,11 @@ const client = new SecretsManager({
 
 module.exports.getSecretKey = async (secretName) => new Promise((resolve, reject) => {
 
-    console.log("[Extension] Secret Key for Reading Secret : ", secretName);
+    console.log("[extension] Secret Key for Reading Secret : ", secretName);
     client.getSecretValue({ SecretId: secretName }, function (err, data) {
         if (err) {
-            console.log("[Extension] Error Code in reading secret key : ", err.code);
-            console.log("[Extension] Error in reading secret key : ", err);
+            console.log("[extension] Error Code in reading secret key : ", err.code);
+            console.log("[extension] Error in reading secret key : ", err);
 
             if (err.code === 'DecryptionFailureException' ||
                 err.code === 'InternalServiceErrorException' ||

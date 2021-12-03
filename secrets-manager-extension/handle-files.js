@@ -8,35 +8,52 @@ module.exports.readConfigFile = async () => new Promise((resolve, reject) => {
     console.log(path.resolve("/var/task/secrets-config.yaml"));
     const config = yaml.load(fs.readFileSync('/var/task/secrets-config.yaml', 'utf8', function (err, data) {
       if (err)
-        reject(err);
+        console.log('error', err)
+      reject(err);
     }));
     console.log('config', config)
     resolve(config);
   } catch (e) {
-    console.log('[Extension] error: ' + e);
+    console.log('[extension] error: ' + e);
   }
 });
 
 module.exports.writeCredentials = async (key, filename) => new Promise((resolve, reject) => {
-  console.log('[Extension] filename: ' + filename);
+  console.log('[extension] filename: ' + filename);
   const fullpath = `/tmp/${filename}`;
   const data = `{"credentials":${key}}`;
+  console.log('fullpath', fullpath)
   try {
+
     if (fs.existsSync(fullpath)) {
-      console.log('[Extension]file exist => ' + filename);
+      console.log('[extension]file exist => ' + filename);
       resolve(true);
     }
     else {
       fs.writeFile(`${fullpath}`, data, 'utf8', function (err) {
         if (err) {
-          console.log('[Extension] error to write in the file');
+          console.log('[extension] error to write in the file');
           reject(err);
         }
-        //console.log('[Extension] file was saved!');
+        //console.log('[extension] file was saved!');
         resolve(true);
       });
     }
   } catch (error) {
-    console.log('[Extension] Error: ' + error);
+    console.log('[extension] Error: ' + error);
   }
 });
+
+module.exports.readFolder = async function () {
+  console.log('[EXTENSION], debugging checking files exists')
+  try {
+    fs.readdir('/tmp/', (err, files) => {
+      files.forEach(file => {
+        console.log(file);
+      });
+    });
+  } catch (e) {
+    console.log(e);
+  }
+
+}

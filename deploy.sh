@@ -8,6 +8,6 @@ zip -r extension.zip .
 
 aws lambda publish-layer-version \
  --layer-name "secrets-manager-extension" \
- --region "us-west-2" \
+ --region "us-east-2" \
  --compatible-runtimes "nodejs12.x" \
  --zip-file  "fileb://extension.zip"
