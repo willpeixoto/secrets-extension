@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const { register, next } = require('./extensions-api');
-const { readConfig } = require("./readConfig");
+const { readConfig } = require("./read-config");
 
 
 const EventType = {
@@ -14,10 +14,9 @@ function handleShutdown(event) {
 }
 function handleInvoke(event) {
   console.log('[extension] invoke');
+
 }
 
-// extension must to read a file with keys
-//
 (async function main() {
 
   console.log('[extension] secrets-manager extension');
